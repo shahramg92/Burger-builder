@@ -9,7 +9,7 @@ const toolbar = (props) => (
     <div>MENU</div>
     <Logo />
     <nav>
-      <ul><NavigationItems /></ul>
+      <NavigationItems />
     </nav>
   </header>
 );
