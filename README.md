@@ -1,2 +1,2 @@
 # Burger-builder
-Burger-builder is a project using React/Redux which will allow the user to build a burger based on toppings of their choosing
+Burger-builder is a project using React/Redux with authentication. It allows users to order a burger, which will show the topics being added visually as well as the current price based on what toppings have been added.
