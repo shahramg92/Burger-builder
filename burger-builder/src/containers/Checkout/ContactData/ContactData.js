@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -103,7 +104,7 @@ class ContactData extends Component {
             formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
         const order = {
-            ingredients: this.props.ingredients,
+            ingredients: this.props.ings,
             price: this.props.price,
             orderData: formData
         }
@@ -122,7 +123,7 @@ class ContactData extends Component {
         if (!rules) {
             return true;
         }
-        
+
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
@@ -152,14 +153,14 @@ class ContactData extends Component {
         const updatedOrderForm = {
             ...this.state.orderForm
         };
-        const updatedFormElement = { 
+        const updatedFormElement = {
             ...updatedOrderForm[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        
+
         let formIsValid = true;
         for (let inputIdentifier in updatedOrderForm) {
             formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
@@ -178,7 +179,7 @@ class ContactData extends Component {
         let form = (
             <form onSubmit={this.orderHandler}>
                 {formElementsArray.map(formElement => (
-                    <Input 
+                    <Input
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
@@ -203,4 +204,11 @@ class ContactData extends Component {
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice
+  }
+};
+
+export default connect(mapStateToProps)(ContactData);
