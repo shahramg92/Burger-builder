@@ -100,7 +100,7 @@ class ContactData extends Component {
 
     orderHandler = ( event ) => {
         event.preventDefault();
-
+  
         const formData = {};
         for (let formElementIdentifier in this.state.orderForm) {
             formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
@@ -113,19 +113,20 @@ class ContactData extends Component {
         }
 
         this.props.onOrderBurger(order, this.props.token);
+        
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
-
+        
         const updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], {
-          value: event.target.value,
-          valid: checkValidity(event.target.value, this.state.orderForm[inputIdentifier]),
-          touched: true
+            value: event.target.value,
+            valid: checkValidity(event.target.value, this.state.orderForm[inputIdentifier].validation),
+            touched: true
         });
-        const updatedOrderForm = updateObject(this.state.orderform, {
-          [inputIdentifier]: updatedFormElement
+        const updatedOrderForm = updateObject(this.state.orderForm, {
+            [inputIdentifier]: updatedFormElement
         });
-
+        
         let formIsValid = true;
         for (let inputIdentifier in updatedOrderForm) {
             formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
@@ -144,7 +145,7 @@ class ContactData extends Component {
         let form = (
             <form onSubmit={this.orderHandler}>
                 {formElementsArray.map(formElement => (
-                    <Input
+                    <Input 
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}

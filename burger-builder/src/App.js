@@ -10,15 +10,15 @@ import * as actions from './store/actions/index';
 
 const asyncCheckout = asyncComponent(() => {
   return import('./containers/Checkout/Checkout');
-})
+});
 
 const asyncOrders = asyncComponent(() => {
   return import('./containers/Orders/Orders');
-})
+});
 
 const asyncAuth = asyncComponent(() => {
   return import('./containers/Auth/Auth');
-})
+});
 
 class App extends Component {
   componentDidMount () {
@@ -27,14 +27,14 @@ class App extends Component {
 
   render () {
     let routes = (
-    <Switch>
-      <Route path="/auth" component={asyncAuth} />
-      <Route path="/" exact component={BurgerBuilder} />
-      <Redirect to="/" />
-    </Switch>
+      <Switch>
+        <Route path="/auth" component={asyncAuth} />
+        <Route path="/" exact component={BurgerBuilder} />
+        <Redirect to="/" />
+      </Switch>
     );
 
-    if (this.props.isAuthenticated) {
+    if ( this.props.isAuthenticated ) {
       routes = (
         <Switch>
           <Route path="/checkout" component={asyncCheckout} />
@@ -65,8 +65,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
+    onTryAutoSignup: () => dispatch( actions.authCheckState() )
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter( connect( mapStateToProps, mapDispatchToProps )( App ) );

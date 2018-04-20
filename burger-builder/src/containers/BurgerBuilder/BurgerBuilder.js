@@ -21,7 +21,6 @@ export class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
-        // console.log(this.props);
         this.props.onInitIngredients();
     }
 
@@ -37,12 +36,12 @@ export class BurgerBuilder extends Component {
     }
 
     purchaseHandler = () => {
-      if (this.props.isAuthenticated) {
-        this.setState( { purchasing: true } );
-      } else {
-        this.props.onSetAuthRedirectPath('/checkout');
-        this.props.history.push('/auth');
-      }
+        if (this.props.isAuthenticated) {
+            this.setState( { purchasing: true } );
+        } else {
+            this.props.onSetAuthRedirectPath('/checkout');
+            this.props.history.push('/auth');
+        }
     }
 
     purchaseCancelHandler = () => {
@@ -101,7 +100,7 @@ const mapStateToProps = state => {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
         error: state.burgerBuilder.error,
-        isAuthenticated: state.auth.token !==null
+        isAuthenticated: state.auth.token !== null
     };
 }
 
