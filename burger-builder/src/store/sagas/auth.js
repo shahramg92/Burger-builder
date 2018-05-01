@@ -24,10 +24,10 @@ export function* authUserSaga(action) {
     returnSecureToken: true
   };
   let url =
-    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyB5cHT6x62tTe-g27vBDIqWcwQWBSj3uiY";
+    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyC1aBo1_qQBFGFSbdAi4ITC-q9mnNCC_zs";
   if (!action.isSignup) {
     url =
-      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyB5cHT6x62tTe-g27vBDIqWcwQWBSj3uiY";
+      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyC1aBo1_qQBFGFSbdAi4ITC-q9mnNCC_zs";
   }
   try {
     const response = yield axios.post(url, authData);
