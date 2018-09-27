@@ -1,34 +1,36 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from "./actionTypes";
+import axios from "../../axios-orders";
 
-export const addIngredient = ( name ) => {
+export const addIngredient  = (name) => {
     return {
-        type: actionTypes.ADD_INGREDIENT,
-        ingredientName: name
-    };
+        ingredientName: name,
+        type: actionTypes.ADD_INGREDIENTS
+    }
 };
 
-export const removeIngredient = ( name ) => {
+export const removeIngredient  = (name) => {
     return {
-        type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: name
-    };
+        ingredientName: name,
+        type: actionTypes.REMOVE_INGREDIENTS
+    }
 };
 
-export const setIngredients = ( ingredients ) => {
+
+export const setIngredients = (ingredients) => {
     return {
-        type: actionTypes.SET_INGREDIENTS,
+        type : actionTypes.SET_INGREDIENTS,
         ingredients: ingredients
     };
 };
 
-export const fetchIngredientsFailed = () => {
-    return {
-        type: actionTypes.FETCH_INGREDIENTS_FAILED
-    };
+export const initIngredients = () => {
+  return {
+      type: actionTypes.INIT_INGREDIENTS
+  }
 };
 
-export const initIngredients = () => {
+export const fetchIngredientsFailed = () => {
     return {
-        type: actionTypes.INIT_INGREDIENTS
+        type : actionTypes.FETCH_INGREDIENTS_FAILED
     }
 };
